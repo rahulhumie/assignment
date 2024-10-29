@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="eg">
+    <head>
+        <meta charset="UTF-8">
+        <title>Invoice Detail</title>
+    </head>
+    <body>
+        <h1>Invoice Detail</h1>
+        {% comment %} <a href="{% url 'invoice_new'%}"> Add new Invoice</a>
+        <table>
+            <tr>
+                <th>Invoice number </th>
+                <th>Cusomer name  </th>
+                <th>Total amount </th>
+                <th>actions </th>
+            </tr>
+            {% for invoice in invoices%}
+            <tr>
+                <td>{{invoice.invoice_number}}</td>
+                <td>{{invoice.customer_name}}</td>
+                <td>{{invoice.total_amount}}</td>
+            </tr>
+            <a href= " {% url 'invoice_detail' invoice.id} ">View</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table> {% endcomment %}
+<form method="POST">
+    {% csrf_token %}
+    <label> Cusomer Name:</label>
+    <input type="text" name= "customer_name" vlaue="{{invoice.customer_name}}" >
+    <label> Billing address:</label>
+    <textarea    name= "billing_address" >{{invoice.billing_address}}</textarea>
+    <label> Shipping  address:</label>
+    <textarea    name= "shipping_address" >{{invoice.shipping_address}}</textarea>
+    <label>GSTIN:</label>
+    <input type="text" name= "gstin" value="{{invoice.gstin}}">
+    <h2>Items</h2>
+    {% for item in invoice.item.all %}
+    <div>
+        <label>Item name:</label>
+        <input type = "text" name="item_name" vlaue="{{item.item_name}}">
+        <label>Quantity :</label>
+        <input type = "number" name="quantity" vlaue="{{item.quantity}}">
+        <label>Price :</label>
+        <input type = "number" name="price" vlaue="{{item.price}}">
+        <label>Amount :</label>
+        <input type = "number" name="amount" vlaue="{{item.amount}}">
+    </div>
+    {% endfor  %}
+    <button type = "submit"> save invoice </button>
+</form>
+ 
+
+
+
+
+
+
+
+
+    </body>
+    </html>

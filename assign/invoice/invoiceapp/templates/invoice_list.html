@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="eg">
+    <head>
+        <meta charset="UTF-8">
+        <title>Invoice List</title>
+    </head>
+    <body>
+        <h1>Invoice List</h1>
+        <a href="{% url 'invoice_new'%}"> Add new Invoice</a>
+        <table>
+            <tr>
+                <th>Invoice number </th>
+                <th>Cusomer name  </th>
+                <th>Total amount </th>
+                <th>actions </th>
+            </tr>
+            {% for invoice in invoices%}
+            <tr>
+                <td>{{invoice.invoice_number}}</td>
+                <td>{{invoice.customer_name}}</td>
+                <td>{{invoice.total_amount}}</td>
+            </tr>
+            <a href= " {% url 'invoice_detail' invoice.id} ">View</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+    </body>
+    </html>
